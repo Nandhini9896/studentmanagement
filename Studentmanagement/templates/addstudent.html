@@ -1,0 +1,98 @@
+{% extends 'navebar.html' %}
+
+{% block content %}
+
+{% load static %}
+<html>
+<head>
+<title>Student Registration Form </title>
+<style>
+
+h2{
+ font-family: Sans-serif;
+ font-size: 24px;
+ font-style: normal;
+ font-weight: bold;
+ color: blue;
+ text-align: center;
+ text-decoration: underline
+}
+table{
+ font-family: verdana;
+ color:white;
+ font-size: 20px;
+ font-style: normal;
+ font-weight: bold;
+ background: linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+ border-collapse: collapse;
+ border: 4px solid #000000;
+ border-style: dashed;
+
+}
+table.inner{
+ border: 10px
+}
+input[type=text], input[type=email], input[type=number]{
+ width: 100%;
+ padding: 6px 12px;
+ margin: 5px 0;
+ box-sizing: border-box;
+}
+input[type=submit], input[type=reset]{
+ width: 100%;
+ padding: 8px 12px;
+ margin: 5px 0;
+ box-sizing: border-box;
+}
+</style>
+</head>
+<body>
+<h2>Add Student</h2>
+    <form action="readdata" method="post">
+        {% csrf_token %}
+<table align="center" cellpadding = "10">
+<!--------------------- First Name ------------------------------------------>
+<tr>
+<td>Name:</td>
+<td><input type="text" name="txtName"  placeholder="enter your name" />
+</td>
+</tr>
+<!------------------------ Last Name --------------------------------------->
+<tr>
+<td>Age:</td>
+<td><input type="text" name="txtAge"  placeholder="enter your age"/>
+</td>
+</tr>
+<!-------------------------- Email ID ------------------------------------->
+<tr>
+<td>Phoneno:</td>
+<td><input type="number" name="txtPhoneno"  placeholder="enter your phonenumber"/>
+</td>
+</tr>
+<!-------------------------- Mobile Number ------------------------------------->
+<tr>
+    <td>City:</td>
+    <td><select name="ddlCity">
+                        {% for i in City_data %}
+                             <option>{{ i.City_Name}}</option>
+                        {% endfor %}
+                    </select>
+    </td>
+</tr>
+ <tr>
+     <td>Course:</td>
+    <td><select name="ddlCourse">
+                        {% for i in Course_data %}
+                             <option>{{ i.Course_Name}}</option>
+                        {% endfor %}
+                    </select>
+    </td>
+</tr>
+<tr>
+    <td><input type="submit" name="btnSub" value="AddStudent"></td>
+</tr>
+</table>
+    </form>
+</body>
+</html>
+{% endblock %}
